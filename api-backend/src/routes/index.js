@@ -4,8 +4,12 @@ import tasks from "./tasksRoutes.js";
 
 const routes = (app) => {
   app.route('/').get((req, res) => {
-    res.status(200).send({titulo: "Curso de node"})
+    //res.status(200).send({titulo: "Api"})
+    res.render('index');
   })
+
+  app.set('view engine', 'ejs');
+  app.set('views','../api-frontend/views');
 
   app.use(
     express.json(),
