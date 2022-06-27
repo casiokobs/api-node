@@ -1,1 +1,46 @@
-<h1>Olá mundo</h1>
+<form>
+    <label for="id">Id</label><br>
+    <input type="text" id="id" name="id"><br>
+    <label for="name">Name</label><br>
+    <input type="text" id="name" name="name">
+</form>
+<span id="span_id"></span>
+<span id="span_name"></span>
+
+<table>
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+<script>
+    let ids = []
+     fetch("http://localhost:3000/user").then(resposta=>{
+        return resposta.json();
+    }).then(body =>{
+        ids = body.map(obj => obj._id);
+        console.log(ids);
+        for(var i = 0; i<6; i++){
+        //document.getElementById("span_id").innerHTML = ids[i];
+        console.log(ids[i]);
+        //document.getElementById("span_name").innerHTML = body.name;
+        }
+    })
+
+
+
+
+
+
+
+
+
+    /*
+    //script para trazer informacoes do usuario especifico (hardcoded)
+    fetch("http://localhost:3000/user/62b61cb6004667c98947e119").then(resposta=>{
+        return resposta.json();
+    }).then(body =>{
+        document.getElementById("id").value = body._id;
+        document.getElementById("name").value = body.name;
+    })
+    */ 
+</script>
