@@ -4,10 +4,10 @@ import TasksController from "../controller/tasksController.js";
 const router = express.Router();
 
 router
-  .get("/task", TasksController.listarTask)
-  .get("/task/:id", TasksController.listarTaskPorId)
-  .post("/task", TasksController.cadastrarTask)
-  .put("/task/:id", TasksController.atualizarTask)
-  .delete("/task/:id", TasksController.excluirTask)
+  .get("/api/v1/task", TasksController.listarTask)
+  .get("/api/v1/task/:id", TasksController.listarTaskPorId)
+  .post("/api/v1/task", TasksController.cadastrarTask)
+  .put("/api/v1/task/:id", TasksController.atualizarTask)
+  .delete("/api/v1/task/:id", TasksController.excluirTask)
 
 export default router;   
