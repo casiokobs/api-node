@@ -11,6 +11,8 @@ const routes = (app) => {
     res.render('addUser');
   })
 
+  //projeto foi começado com ejs mas foi descontinuado
+
   app.set('view engine', 'ejs');
   app.set('views','../api-frontend/views');
 
