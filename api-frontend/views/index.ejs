@@ -1,47 +1,59 @@
-<form>
-    <label for="id">Id</label><br>
-    <input type="text" id="id" name="id"><br>
-    <label for="name">Name</label><br>
-    <input type="text" id="name" name="name">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<form id="form">
+    <label for="name">name</label><br>
+    <input type="text" id="name" name="name"><br>
+    <button type="submit">Submit</button>
 </form>
-<span id="span_id"></span>
-<span id="span_name"></span>
 
-<table>
-    <thead></thead>
-    <tbody></tbody>
+<table class="table table-dark table-bordered">
+    <tr>
+      <th>Task</th>
+      <th>Date</th>
+      <th>User</th>
+    </tr>
+    <tbody id="table-content">
+    </tbody>
   </table>
 
 <script>
-    //codigo só de teste, provavelmente será removido
-    let ids = []
-     fetch("http://localhost:3000/user").then(resposta=>{
+/*
+//Funciona com outras apis, nessa ele cai no erro
+    const form = document.getElementById("form");
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const prePayload = new FormData(form);
+        const payload = new URLSearchParams(prePayload);
+
+        console.log([...payload]);
+
+        fetch('http://localhost:3000/user', {
+            method: 'POST',
+            body: payload,
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err))
+    })
+    */
+
+
+    //populando tabela de tasks, usuario mostra o id ao inves do nome
+     fetch("http://localhost:3000/task").then(resposta=>{
         return resposta.json();
     }).then(body =>{
-        ids = body.map(obj => obj._id);
-        console.log(ids);
-        for(var i = 0; i<6; i++){
-        //document.getElementById("span_id").innerHTML = ids[i];
-        console.log(ids[i]);
-        //document.getElementById("span_name").innerHTML = body.name;
-        }
-    })
-
-
-
-
-
-
-
-
-
-    /*
-    //script para trazer informacoes do usuario especifico (hardcoded)
-    fetch("http://localhost:3000/user/62b61cb6004667c98947e119").then(resposta=>{
-        return resposta.json();
-    }).then(body =>{
-        document.getElementById("id").value = body._id;
-        document.getElementById("name").value = body.name;
-    })
-    */ 
+        let tableData = "";
+        body.map((values)=>{
+            tableData += `  <tr>
+                                <td>${values.description}</td>
+                                <td>${values.date}</td>
+                                <td>${values.user}</td>
+                            </tr>`
+        });
+        document.getElementById("table-content").innerHTML = tableData;
+    }).catch(err =>{
+        console.log(err)
+    })    
+    
 </script>

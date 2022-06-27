@@ -21,14 +21,13 @@ class UserController {
   }
 
   static cadastrarUser = (req, res) => {
-    let autor = new users(req.body);
-
-    autor.save((err) => {
+    let user = new users(req.body);
+    user.save((err) => {
 
       if(!err) {
-        res.status(201).send(autor.toJSON())
+        res.status(201).send(user.toJSON())
       } else {
-        res.status(500).send({message: `${err.message} - falha ao cadastrar user.`})
+        res.status(500).send({message: `${err.message} - Falha ao cadastrar usuário.`})
       }
     })
   }
