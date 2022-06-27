@@ -10,12 +10,12 @@ class UserController {
 
   static listarUserPorId = (req, res) => {
     const id = req.params.id;
-
+    //parece que tem um bug que quando pesquisa por id depois de excluir ele traz a resposta ok mas sem informacao nenhuma
     users.findById(id, (err, users) => {
-      if(err) {
-        res.status(400).send({message: `${err.message} - Id do user não localizado.`})
-      } else {
+      if(!err) {
         res.status(200).send(users);
+      } else {
+        res.status(404).send({message: `${err.message} - User not found.`})
       }
     })
   }
@@ -25,10 +25,10 @@ class UserController {
 
     autor.save((err) => {
 
-      if(err) {
-        res.status(500).send({message: `${err.message} - falha ao cadastrar user.`})
-      } else {
+      if(!err) {
         res.status(201).send(autor.toJSON())
+      } else {
+        res.status(500).send({message: `${err.message} - falha ao cadastrar user.`})
       }
     })
   }
@@ -50,9 +50,9 @@ class UserController {
 
     users.findByIdAndDelete(id, (err) => {
       if(!err){
-        res.status(200).send({message: 'User removido com sucesso'})
+        res.status(204).send({message: 'User removed successfully'})
       } else {
-        res.status(500).send({message: err.message})
+        res.status(404).send({message: `${err.message} - User not found.`})
       }
     })
   }

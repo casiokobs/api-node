@@ -12,7 +12,7 @@ class TasksController {
     const id = req.params.id;
     tasks.findById(id, (err, tasks) => {
       if(err) {
-        res.status(400).send({message: `${err.message} - Id do Task não localizado.`})
+        res.status(404).send({message: `${err.message} - Task not found.`})
       } else {
         res.status(200).send(tasks);
       }
@@ -36,7 +36,7 @@ class TasksController {
       if(!err) {
         res.status(200).send({message: 'Task atualizado com sucesso'})
       } else {
-        res.status(500).send({message: err.message})
+        res.status(404).send({message: `${err.message} - Task not found`})
       }
     })
   }
@@ -45,9 +45,9 @@ class TasksController {
     const id = req.params.id;
     tasks.findByIdAndDelete(id, (err) => {
       if(!err){
-        res.status(200).send({message: 'Task removido com sucesso'})
+        res.status(204).send({message: 'Task removed successfully'})
       } else {
-        res.status(500).send({message: err.message})
+        res.status(404).send({message: 'Task not found'})
       }
     })
   }
