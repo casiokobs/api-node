@@ -13,6 +13,15 @@ form.addEventListener('submit', function(e) {
         body: payload
     })
     .then(res => res.json())
-    .then(data => alert(data))
+    .then(err => alertMessage(err.message))
     .catch(err => alert(err))
 })
+
+function alertMessage(a){
+    if (typeof a === 'string') {
+        alert(a);    
+    }else{
+        window.location = 'file:///home/desv/testes/v2/api-node/api-frontend/views/index.html'; 
+    }
+    
+}
