@@ -23,8 +23,7 @@ async function getTask(){
                                 <td>${values.description}</td>
                                 <td>${values.date}</td>
                                 <td>${values.user}</td>
-                                <td><button onclick=editTask('${values._id}')>Editar</button></td>
-                                <td><button id="delTask" onclick=delTask('${values._id}')>Remover</button></td>
+                                <td><button onclick=editTask('${values._id}')>Editar</button> <button id="delTask" onclick=delTask('${values._id}')>Remover</button></td>
                             </tr>`
         });
         document.getElementById("tasks-table-content").innerHTML = tableData;

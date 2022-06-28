@@ -23,8 +23,13 @@ async function getUser(){
                                 <td>${values.name}</td>
                                 <td>${values.email}</td>
                                 <td>${values.country}</td>
-                                <td><button onclick=editUser('${values._id}')>Editar</button></td>
-                                <td><button id="delUser" onclick=delUser('${values._id}')>Remover</button></td>
+                                <td>${values.cpf}</td>
+                                <td>${values.address}</td>
+                                <td>${values.number}</td>
+                                <td>${values.city}</td>
+                                <td>${values.state}</td>
+                                <td>${values.zipCode}</td>
+                                <td><button onclick=editUser('${values._id}')>Editar</button> <button id="delUser" onclick=delUser('${values._id}')>Remover</button></td>
                             </tr>`
         });
         document.getElementById("users-table-content").innerHTML = tableData;

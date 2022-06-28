@@ -13,6 +13,6 @@ form.addEventListener('submit', function(e) {
         body: payload
     })
     .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
+    .then(data => alert(data.message))
+    .catch(err => alert(err))
 })
