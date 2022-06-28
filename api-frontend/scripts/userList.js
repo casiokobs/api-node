@@ -1,29 +1,35 @@
-async function delTask(_id){
-    return await fetch('http://127.0.0.1:3000/api/v1/task/'+_id, {
+async function delUser(_id){
+    return await fetch('http://127.0.0.1:3000/api/v1/user/'+_id, {
         method: 'DELETE',
     })
-    .then(res => getTask())
+    .then(res => getUser())
     .catch(err => console.log(err))
-    
 }
 
-async function getTask(){
-    return await fetch("http://localhost:3000/api/v1/task").then(resposta=>{
+
+async function editUser(_id){
+    //só redireciona pro id, nao funciona
+    window.location = 'http://127.0.0.1:3000/api/v1/user/'+_id 
+}
+
+
+async function getUser(){
+    return await fetch("http://localhost:3000/api/v1/user").then(resposta=>{
         return resposta.json();
     }).then(body =>{
         let tableData = "";
         body.map((values)=>{
             tableData += `  <tr>
-                                <td>${values.description}</td>
-                                <td>${values.date}</td>
-                                <td>${values.user}</td>
-                                <td><button onclick="location.href='https://google.com'">Editar</button></td>
-                                <td><button id="delTask" onclick=delTask('${values._id}')>Remover</button></td>
+                                <td>${values.name}</td>
+                                <td>${values.email}</td>
+                                <td>${values.country}</td>
+                                <td><button onclick=editUser('${values._id}')>Editar</button></td>
+                                <td><button id="delUser" onclick=delUser('${values._id}')>Remover</button></td>
                             </tr>`
         });
-        document.getElementById("table-content").innerHTML = tableData;
+        document.getElementById("users-table-content").innerHTML = tableData;
     }).catch(err =>{
         console.log(err)
     }) 
 }
-getTask();
+getUser();

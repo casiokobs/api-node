@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema(
         },
         message: props => `${props.value} is not a valid email!`
       }, required: true},
-    password: {type: String, minlength: [6, 'Password must have at least 6 characters'], required: true},
+    password: {type: String, minlength: [6, 'Password must have at least 6 characters long'], required: true},
     address: {type: String, required: true},
     number: {type: String, required: true},
     complement: {type: String, required: true},

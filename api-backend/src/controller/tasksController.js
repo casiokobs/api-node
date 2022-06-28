@@ -2,13 +2,13 @@ import tasks from "../model/Task.js";
 
 class TasksController {
 
-  static listarTask = (req, res) => {
+  static listTask = (req, res) => {
     tasks.find((err, tasks) => {
       res.status(200).json(tasks)
   })
   }
 
-  static listarTaskPorId = (req, res) => {
+  static listTaskById = (req, res) => {
     const id = req.params.id;
     tasks.findById(id, (err, tasks) => {
       if(err) {
@@ -19,29 +19,29 @@ class TasksController {
     })
   }
 
-  static cadastrarTask = (req, res) => {
-    let autor = new tasks(req.body);
-    autor.save((err) => {
+  static addTask = (req, res) => {
+    let task = new tasks(req.body);
+    task.save((err) => {
       if(err) {
-        res.status(500).send({message: `${err.message} - falha ao cadastrar Task.`})
+        res.status(500).send({message: `${err.message} - Failed to add task.`})
       } else {
-        res.status(201).send(autor.toJSON())
+        res.status(201).send(task.toJSON())
       }
     })
   }
 
-  static atualizarTask = (req, res) => {
+  static updateTask = (req, res) => {
     const id = req.params.id;
     tasks.findByIdAndUpdate(id, {$set: req.body}, (err) => {
       if(!err) {
-        res.status(200).send({message: 'Task atualizado com sucesso'})
+        res.status(200).send({message: 'Task updated successfully'})
       } else {
         res.status(404).send({message: `${err.message} - Task not found`})
       }
     })
   }
 
-  static excluirTask = (req, res) => {
+  static deleteTask = (req, res) => {
     const id = req.params.id;
     tasks.findByIdAndDelete(id, (err) => {
       if(!err){
