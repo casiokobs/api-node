@@ -5,7 +5,7 @@ class TasksController {
   static listTask = (req, res) => {
     tasks.find((err, tasks) => {
       res.status(200).json(tasks)
-  })
+  }).populate('user', 'name')
   }
 
   static listTaskById = (req, res) => {
