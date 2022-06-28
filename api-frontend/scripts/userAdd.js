@@ -21,7 +21,6 @@ function alertMessage(a){
     if (typeof a === 'string') {
         alert(a);    
     }else{
-        window.location = 'file:///home/desv/testes/v2/api-node/api-frontend/views/index.html'; 
+        window.location = 'index.html'; 
     }
-    
 }

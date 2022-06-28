@@ -3,7 +3,7 @@ async function delUser(_id){
         method: 'DELETE',
     })
     .then(res => getUser())
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
 }
 
 
@@ -11,7 +11,6 @@ async function editUser(_id){
     //só redireciona pro id, nao funciona
     window.location = 'http://127.0.0.1:3000/api/v1/user/'+_id 
 }
-
 
 async function getUser(){
     return await fetch("http://localhost:3000/api/v1/user").then(resposta=>{
@@ -36,5 +35,31 @@ async function getUser(){
     }).catch(err =>{
         console.log(err)
     }) 
+    
 }
 getUser();
+
+function search(){
+    const userSearch = document.getElementById('userSearch');
+    getUserByID(userSearch.value);
+}
+async function getUserByID(id){
+    return await fetch("http://localhost:3000/api/v1/user/"+id).then(resposta=>{
+        return resposta.json();
+    }).then(body =>{
+        let tableData = "";
+            tableData += `<tr>
+                                <td>${body.name}</td>
+                                <td>${body.email}</td>
+                                <td>${body.country}</td>
+                                <td>${body.cpf}</td>
+                                <td>${body.address}</td>
+                                <td>${body.number}</td>
+                                <td>${body.city}</td>
+                                <td>${body.state}</td>
+                                <td>${body.zipCode}</td>
+                                
+                            </tr>`;
+                            document.getElementById("table-search-content").innerHTML = tableData;
+    })
+}

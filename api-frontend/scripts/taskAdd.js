@@ -13,6 +13,14 @@ form.addEventListener('submit', function(e) {
         body: payload
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(err => alertMessage(err.message))
     .catch(err => console.log(err))
 })
+
+function alertMessage(a){
+    if (typeof a === 'string') {
+        alert(a);    
+    }else{
+        window.location = 'index.html'; 
+    }
+}
