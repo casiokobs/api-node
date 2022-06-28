@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema(
       validator: function(v) {
         return /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/.test(v);
       },
-      message: props => `${props.value} is not a valid cpf!`
+      message: props => `${props.value} is not a valid cpf! example: 000.000.000-00`
     }, required: true },
     birthDate: {type: Date,
       validate: function(input) {
@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema(
         validator: function(v) {
           return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v);
         },
-        message: props => `${props.value} is not a valid email!`
+        message: props => `${props.value} is not a valid email! example: xxx@xxx.xxx`
       }, required: true},
     password: {type: String, minlength: [6, 'Password must have at least 6 characters long'], required: true},
     address: {type: String, required: true},

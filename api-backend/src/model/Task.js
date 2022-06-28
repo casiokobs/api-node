@@ -6,7 +6,11 @@ const taskSchema = new mongoose.Schema(
   {
     id: {type: String},
     description: {type: String, required: true},
-    user: {type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true},
+    user: {type: mongoose.Schema.Types.ObjectId,
+           ref: 'user',
+           required: true,
+           message: `User not found or invalid!!`
+          },
     date: {type: Date,
       validate: function(input) {
           return new Date(input) >= new Date();
