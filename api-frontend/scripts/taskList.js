@@ -16,7 +16,8 @@ async function getTask(){
                                 <td>${values.description}</td>
                                 <td>${values.date}</td>
                                 <td>${validaNome(values.user)}</td>
-                                <td><button class="button-table" onclick=openFormEdit('${values._id}','${values.date}','${verificaID(values.user)}','${(values.description).replace(/['" ]/gi, '|')}')>Edit</button> <button class="button-table" id='delTask' onclick=delTask('${values._id}')>Remove</button></td>
+                                <td><button class="button-table" onclick=openFormEdit('${values._id}','${values.date}','${verificaID(values.user)}','${(values.description).replace(/['" ]/gi, '|')}')>Edit</button> 
+                                <button class="button-table" id='delTask' onclick=delTask('${values._id}')>Remove</button></td>
                             </tr>`
         });
         document.getElementById("tasks-table-content").innerHTML = tableData;
@@ -33,7 +34,6 @@ async function populateSelect(){
         body.map((values)=>{
             selectData += `<option id="user" value=${values._id}>${values.name}</option>`
         });
-        console.log(selectData);
         document.getElementById("user").innerHTML = selectData;
     }).catch(err =>{
         console.log(err)
@@ -42,7 +42,6 @@ async function populateSelect(){
 
 function validaNome(nome) {
     if (nome != null) {
-        console.log(nome);
         return (nome.name)
     }else{
         return 'User_Deleted'
