@@ -17,10 +17,3 @@ form.addEventListener('submit', function(e) {
     .catch(err => alert(err))
 })
 
-function alertMessage(a){
-    if (typeof a === 'string') {
-        alert(a);    
-    }else{
-        window.location = 'index.html'; 
-    }
-}

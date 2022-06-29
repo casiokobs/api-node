@@ -7,26 +7,6 @@
     visibility: visible;
   }
 </style>
-<div id="popup" class="hidden" style="margin-left: 40%;margin-right: 40%;">
-    <h2>Edit the tasks</h2>
-    <form id="form">
-      <label for="id">id</label><br>
-      <input type="text" id="id" name="id" disabled><br>
-
-      <label for="user">User</label><br>
-      <input type="text" id="user" name="user"><br>
-    
-      <label for="description">Description</label><br>
-      <input type="text" id="description" name="description"><br>
-    
-      <label for="date">Date</label><br>
-      <input type="text" id="date" name="date"><br>
-      
-      <button type="submit" id="edit-Task">Edit</button>
-    </form>
-    <a href="index.html"><button>Back</button></a>
-</div>
-
 <div class="container" id="main">
   <label for="user">Search by id</label><br>
   <input type="text" id="userSearch" name="user"> <button onclick="search()">Search</button></a><br>
@@ -77,6 +57,27 @@
     <tbody id="users-table-content">
     </tbody>
   </table>
+  
+  <div id="popup" class="hidden" style="margin-left: 40%;margin-right: 40%;">
+    <h2>Edit the tasks</h2>
+    <form id="form">
+      <label for="id">id</label><br>
+      <input type="text" id="id" name="id" disabled><br>
+
+      <label for="user">User ID</label><br>
+      <input type="text" id="user" name="user"><br>
+    
+      <label for="description">Description</label><br>
+      <input type="text" id="description" name="description"><br>
+    
+      <label for="date">Date</label><br>
+      <input type="text" id="date" name="date"><br>
+      
+    </form>
+    <button id="edit-Task" onclick="clickEdit()">Edit</button>
+    <a href="index.html"><button>Back</button></a>
+</div>
+
 </div>
 
 

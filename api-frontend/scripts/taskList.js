@@ -16,7 +16,7 @@ async function getTask(){
                                 <td>${values.description}</td>
                                 <td>${values.date}</td>
                                 <td>${validaNome(values.user)}</td>
-                                <td><button onclick=openFormEdit('${values._id}','${values.description}','${values.date}','${validaNome(values.user)}')>Editar</button> <button id='delTask' onclick=delTask('${values._id}')>Remover</button></td>
+                                <td><button onclick=openFormEdit('${values._id}','${values.date}','${verificaID(values.user)}','${(values.description).replace(/['" ]/gi, '|')}')>Editar</button> <button id='delTask' onclick=delTask('${values._id}')>Remover</button></td>
                             </tr>`
         });
         document.getElementById("tasks-table-content").innerHTML = tableData;
@@ -26,31 +26,57 @@ async function getTask(){
 }
 function validaNome(nome) {
     if (nome != null) {
-        console.log(nome.name);
-        return nome.name
+        console.log(nome);
+        return (nome.name)
     }else{
         return 'User_Deleted'
     }
 }
 getTask();
 
-async function openFormEdit(_id, desc, data,user){
+async function openFormEdit(_id, data,user,desc){
 
     let popup = document.getElementById('popup');
     let main = document.getElementById('main');
     popup.classList.add('visible');
     main.classList.add('hidden');
 
-    document.getElementById('user').value=user;
-    document.getElementById('description').value=desc;
-    document.getElementById('date').value=data;
-    document.getElementById('id').value=_id;
-
-
-    console.log(_id);
-    console.log(desc);
-    console.log(data);
-    console.log(user);
-    
-
+    document.getElementById('user').value = user.replace(/[|]/gi, ' ');
+    document.getElementById('description').value = desc.replace(/[|]/gi, ' ');
+    document.getElementById('date').value = data;
+    document.getElementById('id').value = _id; 
+    document.getElementById('edit-Task').value = _id;
 }
+async function clickEdit(){
+    let id = document.getElementById('id').value;
+    let  edit = await fetch("http://localhost:3000/api/v1/task/"+id,
+    {
+        method:'PUT',
+        body: JSON.stringify({
+            description: document.getElementById('description').value,
+            date:document.getElementById('date').value
+        }),
+        headers: new Headers({
+            'Content-Type': 'Application/Json'
+        })
+    })
+    .then(err => alertMessage(err.message))
+return edit;
+}
+
+function verificaID(user){
+    if (user != null) {
+        return user._id;
+    }else{
+        return 'User_Deleted';
+    }
+}
+
+function alertMessage(a){
+    if (typeof a === 'string') {
+        alert(a);    
+    }else{
+        window.location = 'index.html'; 
+    }
+}
+    
