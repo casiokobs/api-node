@@ -28,7 +28,7 @@ async function getUser(){
                                 <td>${values.city}</td>
                                 <td>${values.state}</td>
                                 <td>${values.zipCode}</td>
-                                <td><button onclick=editUser('${values._id}')>Editar</button> <button id="delUser" onclick=delUser('${values._id}')>Remover</button></td>
+                                <td><button class="button-table" onclick=editUser('${values._id}')>Edit</button> <button class="button-table" id="delUser" onclick=delUser('${values._id}')>Remove</button></td>
                             </tr>`
         });
         document.getElementById("users-table-content").innerHTML = tableData;
@@ -41,6 +41,7 @@ getUser();
 
 function search(){
     const userSearch = document.getElementById('userSearch');
+    document.getElementById('users-table-search').classList.remove('hidden');
     getUserByID(userSearch.value);
 }
 async function getUserByID(id){

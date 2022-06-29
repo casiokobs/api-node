@@ -16,7 +16,7 @@ async function getTask(){
                                 <td>${values.description}</td>
                                 <td>${values.date}</td>
                                 <td>${validaNome(values.user)}</td>
-                                <td><button onclick=openFormEdit('${values._id}','${values.date}','${verificaID(values.user)}','${(values.description).replace(/['" ]/gi, '|')}')>Editar</button> <button id='delTask' onclick=delTask('${values._id}')>Remover</button></td>
+                                <td><button class="button-table" onclick=openFormEdit('${values._id}','${values.date}','${verificaID(values.user)}','${(values.description).replace(/['" ]/gi, '|')}')>Edit</button> <button class="button-table" id='delTask' onclick=delTask('${values._id}')>Remove</button></td>
                             </tr>`
         });
         document.getElementById("tasks-table-content").innerHTML = tableData;
