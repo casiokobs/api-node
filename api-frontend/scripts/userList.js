@@ -41,8 +41,7 @@ getUser();
 
 function search(){
     const userSearch = document.getElementById('userSearch');
-    document.getElementById('users-table-search').classList.remove('hidden');
-    console.log(getUserByID(userSearch.value).lenght);
+    getUserByID(userSearch.value);
 }
 
 async function getUserByID(id){
@@ -63,9 +62,10 @@ async function getUserByID(id){
                                 
                             </tr>`;
                             if(body.name == undefined){
-                                document.getElementById("table-search-content").innerHTML = alert('User not found');
+                                document.getElementById("notUser").innerHTML = '<h2 style="color:#c70000;">User not found</h2>';
                             } else {
-                            document.getElementById("table-search-content").innerHTML = tableData;
+                                document.getElementById('users-table-search').classList.remove('hidden');
+                                document.getElementById("table-search-content").innerHTML = tableData;
                             }
     }).then(res =>{
         console.log(res)
