@@ -6,7 +6,6 @@ form.addEventListener('submit', function(e) {
     const prePayload = new FormData(form);
     const payload = new URLSearchParams(prePayload);
 
-    console.log([...payload]);
 
     fetch('http://127.0.0.1:3000/api/v1/task', {
         method: 'POST',
