@@ -34,3 +34,15 @@
   .popup{
     border: solid 1px #212529;
   }
+
+  .form-task{
+    margin: auto;
+    width: 20%;
+    margin-top: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+  }
