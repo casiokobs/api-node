@@ -42,7 +42,7 @@ getUser();
 function search(){
     const userSearch = document.getElementById('userSearch');
     document.getElementById('users-table-search').classList.remove('hidden');
-    getUserByID(userSearch.value);
+    console.log(getUserByID(userSearch.value).lenght);
 }
 async function getUserByID(id){
     return await fetch("http://localhost:3000/api/v1/user/"+id).then(resposta=>{
@@ -62,5 +62,7 @@ async function getUserByID(id){
                                 
                             </tr>`;
                             document.getElementById("table-search-content").innerHTML = tableData;
-    })
+    }).then(res =>{
+        console.log(res)
+    }) 
 }
