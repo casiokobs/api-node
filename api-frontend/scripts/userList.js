@@ -63,8 +63,12 @@ async function getUserByID(id){
                             </tr>`;
                             if(body.name == undefined){
                                 document.getElementById("notUser").innerHTML = '<h2 style="color:#c70000;">User not found</h2>';
+                                document.getElementById('notUser').classList.remove('hidden');
+                                document.getElementById('users-table-search').classList.add('hidden');
+                                
                             } else {
                                 document.getElementById('users-table-search').classList.remove('hidden');
+                                document.getElementById('notUser').classList.add('hidden');
                                 document.getElementById("table-search-content").innerHTML = tableData;
                             }
     }).then(res =>{
