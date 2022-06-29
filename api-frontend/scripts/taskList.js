@@ -54,7 +54,8 @@ async function clickEdit(){
         method:'PUT',
         body: JSON.stringify({
             description: document.getElementById('description').value,
-            date:document.getElementById('date').value
+            date:document.getElementById('date').value,
+            user:document.getElementById('user').value,
         }),
         headers: new Headers({
             'Content-Type': 'Application/Json'
