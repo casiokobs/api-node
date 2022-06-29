@@ -24,6 +24,22 @@ async function getTask(){
         console.log(err)
     }) 
 }
+
+async function populateSelect(){
+    return await fetch("http://localhost:3000/api/v1/user").then(resposta=>{
+        return resposta.json();
+    }).then(body =>{
+        let selectData = "";
+        body.map((values)=>{
+            selectData += `<option id="user" value=${values._id}>${values.name}</option>`
+        });
+        console.log(selectData);
+        document.getElementById("user").innerHTML = selectData;
+    }).catch(err =>{
+        console.log(err)
+    }) 
+}
+
 function validaNome(nome) {
     if (nome != null) {
         console.log(nome);
@@ -33,6 +49,7 @@ function validaNome(nome) {
     }
 }
 getTask();
+populateSelect();
 
 async function openFormEdit(_id, data,user,desc){
 
