@@ -44,6 +44,7 @@ function search(){
     document.getElementById('users-table-search').classList.remove('hidden');
     console.log(getUserByID(userSearch.value).lenght);
 }
+
 async function getUserByID(id){
     return await fetch("http://localhost:3000/api/v1/user/"+id).then(resposta=>{
         return resposta.json();
@@ -61,7 +62,11 @@ async function getUserByID(id){
                                 <td>${body.zipCode}</td>
                                 
                             </tr>`;
+                            if(body.name == undefined){
+                                document.getElementById("table-search-content").innerHTML = alert('User not found');
+                            } else {
                             document.getElementById("table-search-content").innerHTML = tableData;
+                            }
     }).then(res =>{
         console.log(res)
     }) 
