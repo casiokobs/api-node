@@ -1,0 +1,36 @@
+.hidden{
+    visibility: hidden;
+    display: none;
+  }
+  .visible{
+    visibility: visible;
+    display: block;
+  }
+  .button-search{
+    border-radius: 5px;
+    margin: 5px;
+    background-color: #212529;
+    color: white;
+  }
+  .button-table{
+    border-radius: 5px;
+    margin: 5px;
+    width: 80px;
+    background-color: white;
+    color: #212529;
+  }
+  .search-div{
+    margin-top: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+  }
+  .search-div input {
+    width: 50%;
+  }
+  .popup{
+    border: solid 1px #212529;
+  }
