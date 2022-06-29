@@ -22,14 +22,20 @@ async function getTask(){
             tableData += `  <tr>
                                 <td>${values.description}</td>
                                 <td>${values.date}</td>
-                                <td>${values.user.name}</td>
+                                <td>${validaNome(values.user)}</td>
                                 <td><button onclick=editTask('${values._id}')>Editar</button> <button id="delTask" onclick=delTask('${values._id}')>Remover</button></td>
                             </tr>`
         });
-        //o nome do usuario relacionado a task buga se o usuario nao existir mais
         document.getElementById("tasks-table-content").innerHTML = tableData;
     }).catch(err =>{
         console.log(err)
     }) 
+}
+function validaNome(nome) {
+    if (nome != null) {
+        return nome.name
+    }else{
+        return 'User deleted'
+    }
 }
 getTask();
